@@ -4,7 +4,9 @@ Route::get('/', function(){
 	return 'Hello world';
 });
 
-Route::get('hello-user-{name?}', ['uses' => 'TestController@index', 'as' => 'say-hello'])->where('name', '[A-Za-z]{3,5}');
+
+Route::get('users', ['uses' => 'TestController@userList', 'as' => 'user.list']);
+Route::get('hello-user-{name?}', ['uses' => 'TestController@index', 'as' => 'say-hello'])->where('name', '[A-Za-z]{3,15}');
 
 
 Route::match(['get', 'post'], 'foo', function(){
