@@ -1,8 +1,6 @@
 <?php
 
-Route::get('/', function(){
-	return 'Hello world';
-});
+Route::get('/', ['uses' => 'IndexController@index', 'as' => 'main_page']);
 
 
 Route::get('users', ['uses' => 'TestController@userList', 'as' => 'user.list']);
@@ -19,3 +17,4 @@ Route::get('digits/{num1}/{op}/{num2}', ['uses' => 'CalculateController@calculat
 	->where('num1', '\d+')
 	->where('num2', '\d+')
 	->where('op', '[+\-*/]');
+});
