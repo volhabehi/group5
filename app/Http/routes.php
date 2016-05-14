@@ -17,4 +17,3 @@ Route::get('digits/{num1}/{op}/{num2}', ['uses' => 'CalculateController@calculat
 	->where('num1', '\d+')
 	->where('num2', '\d+')
 	->where('op', '[+\-*/]');
-});
