@@ -11,6 +11,12 @@ Route::match(['get', 'post'], 'foo', function(){
 	return 'here';
 });
 
+Route::get('db/select', 'DBController@select');
+Route::get('db/insert', 'DBController@insert');
+Route::get('db/update', 'DBController@update');
+Route::get('db/delete', 'DBController@delete');
+Route::get('db/seed', 'DBController@seedsShow');
+
 
 // Калькулятор
 Route::get('digits/{num1}/{op}/{num2}', ['uses' => 'CalculateController@calculate'])
