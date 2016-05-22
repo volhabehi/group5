@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use App\Test;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -20,11 +21,11 @@ class DBController extends Controller
     	// $city = DB::table('City')->whereRaw('ID > 3000')->paginate(5);
     	// $city = DB::table('City')->max('population');
     	// $city = DB::table('City')->average('population');
-    	$city = DB::table('City')->sum('population');
+    	// $city = DB::table('City')->sum('population');
+		$city = Test::sum('salary');
+
 
     	dd($city);
-
-    	
 
     	return view('db', ['cities' => $city]);
     }

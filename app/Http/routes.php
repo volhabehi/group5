@@ -18,6 +18,14 @@ Route::get('db/delete', 'DBController@delete');
 Route::get('db/seed', 'DBController@seedsShow');
 
 
+
+
+Route::get('request/index', ['uses' => 'FormController@index']);
+Route::post('request/index', ['uses' => 'FormController@store', 'as' => 'form']);
+
+
+
+
 // Калькулятор
 Route::get('digits/{num1}/{op}/{num2}', ['uses' => 'CalculateController@calculate'])
 	->where('num1', '\d+')
