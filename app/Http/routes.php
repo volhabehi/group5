@@ -1,5 +1,16 @@
 <?php
 
+// Blog area
+Route::group(['prefix' => 'article', 'namespace' => 'Article'], function(){
+
+	Route::get('/', ['uses' => 'ArticleController@index', 'as' => 'article.create']);
+	Route::get('create', ['uses' => 'ArticleController@create', 'as' => 'article.create']);
+	Route::post('create', ['uses' => 'ArticleController@store', 'as' => 'article.store']);
+
+});
+
+
+
 Route::get('/', ['uses' => 'IndexController@index', 'as' => 'main_page']);
 
 
