@@ -7,13 +7,7 @@
     @include('partials.errorList')
 
 
-
-
-    <form method="post" action="{{ route('article.store') }}">
-        {{ csrf_field() }}
-        <input type="text" name="title" value="{{ old('title') }}"><br>
-        <input type="text" name="short_description" value="{{ old('short_description') }}"><br>
-        <textarea name="content">{{ old('content') }}</textarea>
-        <input type="submit">
-    </form>
+    {!! Form::open(['class' => 'form-horizontal']) !!}
+        @include('partials.article_form')
+    {!! Form::close() !!}
 @endsection

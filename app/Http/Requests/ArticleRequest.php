@@ -23,9 +23,16 @@ class ArticleRequest extends Request
      */
     public function rules()
     {
-        return [
-            'title' => 'required|unique:articles',
-            'short_description' => 'required|max:255'
+        $rules =  [
+            'title'             => 'required|unique:articles',
+            'short_description' => 'required|max:255',
+            'content'           => 'required'
         ];
+
+        if($this->isMethod('put') and $this->is("article/*/update")){
+            $rules['title'] = 'required|unique:articles,title,'.$this->article->id;
+        }
+
+        return $rules;
     }
 }

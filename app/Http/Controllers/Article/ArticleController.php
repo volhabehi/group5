@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Article;
 use App\Article;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -13,7 +12,14 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        return view('article.index');
+        $articles = Article::latest()->paginate(5);
+
+        return view('article.index', compact('articles'));
+    }
+
+    public function view(Article $article)
+    {
+        return view('article.view', compact('article'));
     }
 
     public function create()
@@ -29,12 +35,25 @@ class ArticleController extends Controller
 
         Article::create($request);
 
-        session()->flash('noty', [
-            'message' => 'Новость ' . array_get($request, 'title') . ' добавлена',
-            'title' => 'Успех',
-            'type' => 'success'
-        ]);
+
+        flash('Успеx', 'Новость ' . array_get($request, 'title') . ' добавлена');
         
         return redirect()->back();
     }
+    
+    public function edit(Article $article)
+    {
+        return view('article.edit', compact('article'));
+    }
+    
+    public function update(Article $article, ArticleRequest $request)
+    {
+        $article->update($request->all());
+
+        flash('Успеx', 'Новость ' . $article->title . ' обновлена');
+        
+        return redirect()->back();
+    }
+    
+    
 }
