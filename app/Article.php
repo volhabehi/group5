@@ -12,4 +12,14 @@ class Article extends Model
         'title',
         'user_id'
     ];
+
+    public function tags()
+    {
+        return $this->belongsToMany(\App\Tag::class, 'articles_tags'); // В оригинале нужно указывать название моделей
+    }
+
+    public function getTagListAttribute()
+    {
+        return $this->tags()->lists('tag_id', 'tag_id')->all();
+    }
 }

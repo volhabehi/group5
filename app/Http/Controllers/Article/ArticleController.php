@@ -7,6 +7,7 @@ use App\Http\Requests\ArticleRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -29,14 +30,11 @@ class ArticleController extends Controller
     
     public function store(ArticleRequest $request)
     {
-        $request = $request->all();
-        $request['user_id'] = 1;
+        $article = \Auth::user()->article()->create($request->all());
 
+        $article->tags()->attach($request->get('tag_list'));
 
-        Article::create($request);
-
-
-        flash('Успеx', 'Новость ' . array_get($request, 'title') . ' добавлена');
+        flash('Успеx', 'Новость ' . array_get($request->all(), 'title') . ' добавлена');
         
         return redirect()->back();
     }
@@ -49,6 +47,8 @@ class ArticleController extends Controller
     public function update(Article $article, ArticleRequest $request)
     {
         $article->update($request->all());
+
+        $article->tags()->sync($request->get('tag_list'));
 
         flash('Успеx', 'Новость ' . $article->title . ' обновлена');
         

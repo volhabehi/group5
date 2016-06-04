@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('test', ['exept' => []]);
+    }
+    
     public function userList()
     {
     	$names = ['Neo', 'Morpheus', 'Tank', 'Trinity', 'Trinity', 'Trinity'];

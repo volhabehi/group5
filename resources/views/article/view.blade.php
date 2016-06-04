@@ -7,4 +7,10 @@
     <p>
         {{ $article->content }}
     </p>
+
+    @unless($article->tags->isEmpty())
+        @foreach($article->tags as $tag)
+            <a href="#" class="label label-success">{{ $tag->name }}</a>
+        @endforeach
+    @endunless
 @endsection

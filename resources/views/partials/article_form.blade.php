@@ -20,6 +20,13 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('tag', 'Tag', ['class' => 'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::select('tag_list[]', $list, null, ['class' => 'form-control', 'multiple']) !!}
+    </div>
+</div>
+
+<div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
         <button type="submit" class="btn btn-default">{{ $btnText or 'Создать' }}</button>
     </div>
